@@ -1,22 +1,48 @@
-# AgentNet: Self-Correcting Enterprise Support Agent
+# AgentNet: Self-Correcting Enterprise Support System
 
-![Kaggle AI Agents Intensive](https://img.shields.io/badge/Kaggle-AI%20Agents%20Intensive-blue)
+![Multi-Agent System](https://img.shields.io/badge/Architecture-Multi--Agent%20System-blue)
+![RAG](https://img.shields.io/badge/Technology-RAG-green)
+![Kaggle Capstone](https://img.shields.io/badge/Project-Kaggle%20Capstone-orange)
 
-## Description
-This is a capstone project for the Kaggle AI Agents Intensive. AgentNet is an autonomous agent designed to triage enterprise support tickets, search for answers, and self-correct its own responses using reflection patterns. It leverages the power of Large Language Models (LLMs) to provide accurate and helpful support.
+## 🚀 Overview
 
-## Tech Stack
-- **LangGraph**: For building stateful, multi-actor applications with LLMs.
-- **Python**: The core programming language.
-- **LLMs**: Utilizing Large Language Models for reasoning and generation.
-- **Google Generative AI**: For accessing Gemini models.
-- **DuckDuckGo Search**: For retrieving real-time information.
+**AgentNet** is an **Autonomous Multi-Agent Orchestrator** that uses **"LLM-as-a-Judge"** to evaluate and self-correct its own customer support responses. This enterprise-grade system ensures high-quality, accurate responses through intelligent self-reflection and multi-layered verification.
 
-## Project Structure
-- `notebooks/`: Contains the main agent prototype notebook (`agent_prototype.ipynb`).
-- `requirements.txt`: List of project dependencies.
+## ✨ Key Features
 
-## Getting Started
-1.  Clone the repository.
-2.  Install dependencies: `pip install -r requirements.txt`
-3.  Open `notebooks/agent_prototype.ipynb` to explore the agent's implementation.
+- **Self-Reflection**: QA Auditor Agent scores responses (1-5) before delivery, ensuring quality control at every step.
+
+- **Resiliency**: Implements a Strategy Pattern for Auth (Vertex AI fallback), providing robust authentication handling.
+
+- **Observability**: Custom TraceLogger for tracking agent latency and decision paths, enabling deep system insights.
+
+- **Nuclear Silencer**: Custom Context Manager to suppress C++ system logs, maintaining clean execution environments.
+
+## 📖 Usage
+
+This project follows a **"Notebook-First Architecture"** where running the notebook generates the `enterprise_agents` package dynamically. This approach allows for rapid prototyping while maintaining production-ready code generation.
+
+To get started:
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Run the orchestrator notebook:
+   ```bash
+   jupyter notebook notebooks/agentnet_orchestrator.ipynb
+   ```
+
+3. The notebook will dynamically generate and execute the multi-agent system.
+
+## 🏗️ Architecture
+
+The system leverages multiple specialized agents that work in concert:
+- **Support Agent**: Primary response generator
+- **QA Auditor Agent**: Response evaluator and quality scorer
+- **Orchestrator**: Coordinates agent interactions and manages decision flows
+
+## 📝 License
+
+This is a Kaggle Capstone Project for educational and portfolio purposes.

@@ -1,5 +1,6 @@
-langchain
-langgraph
 google-generativeai
+google-cloud-aiplatform
+sentence-transformers
+scikit-learn
 pandas
-duckduckgo-search
+ipykernel
