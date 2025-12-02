@@ -1,30 +1,22 @@
-# 🤖 AgentNet: Self-Correcting Enterprise Support Agents
+# AgentNet: Self-Correcting Enterprise Support Agent
 
-### The Problem
-Modern customer support teams face a "Volume vs. Quality" dilemma. Human agents cannot manually triage thousands of tickets efficiently, but standard chatbots often "hallucinate" incorrect answers or provide generic, unhelpful advice. Auditing these automated interactions at scale is impossible for human supervisors.
+![Kaggle AI Agents Intensive](https://img.shields.io/badge/Kaggle-AI%20Agents%20Intensive-blue)
 
-### Why Agents? (The Solution)
-Standard automation scripts cannot reason or critique themselves. **AgentNet** solves this by using a **Multi-Agent System (MAS)** to mimic a human support team structure. By splitting responsibilities—Triage, Research, Response, and Quality Assurance—across specialized agents, the system achieves a level of reliability that a single LLM prompt cannot match.
+## Description
+This is a capstone project for the Kaggle AI Agents Intensive. AgentNet is an autonomous agent designed to triage enterprise support tickets, search for answers, and self-correct its own responses using reflection patterns. It leverages the power of Large Language Models (LLMs) to provide accurate and helpful support.
 
-### System Architecture
-The system utilizes a **Sequential Orchestrator Pattern**:
-1.  **🚦 Triage Agent:** Analyzes raw user text to output structured JSON metadata (Category & Priority).
-2.  **🧠 Knowledge Tool (RAG):** A custom Vector Memory Bank searches a real-world Kaggle dataset (embedded via `SentenceTransformers`) to retrieve relevant policies.
-3.  **💬 Support Agent:** Synthesizes the User Query + Triage Metadata + Retrieved Knowledge to draft a professional response.
-4.  **⚖️ QA Auditor (The Innovation):** An "LLM-as-a-Judge" agent that reads the interaction, assigns a **Quality Score (1-5)**, and writes a critique. If the score is low, it flags the interaction.
+## Tech Stack
+- **LangGraph**: For building stateful, multi-actor applications with LLMs.
+- **Python**: The core programming language.
+- **LLMs**: Utilizing Large Language Models for reasoning and generation.
+- **Google Generative AI**: For accessing Gemini models.
+- **DuckDuckGo Search**: For retrieving real-time information.
 
-### Project Journey & Technical Challenges
-Building an enterprise-grade system in a notebook environment presented unique challenges:
-*   **The "Nuclear" Logs:** The underlying C++ libraries (TensorFlow/gRPC) generated excessive noise. I engineered a custom **"Nuclear Silencer" Context Manager** that performs OS-level file descriptor redirection (`os.dup2`) to route these logs to `/dev/null`, ensuring clean observability.
-*   **Fault Tolerance:** To ensure reliability, I implemented a **Strategy Pattern** that attempts to connect via Google Vertex AI (Cloud) and automatically falls back to the Gemini API Key if cloud authentication fails.
+## Project Structure
+- `notebooks/`: Contains the main agent prototype notebook (`agent_prototype.ipynb`).
+- `requirements.txt`: List of project dependencies.
 
-### Key Results
-Tested against the **Customer Support Ticket Dataset**:
-*   **Success Case:** The system correctly identified "Error 503" as a High-Priority Technical issue, retrieved the maintenance policy, and earned a **QA Score of 4/5**.
-*   **Self-Correction:** When asked for a refund without sufficient context, the Support Agent gave a generic reply. The QA Auditor correctly identified this as unhelpful and awarded a **Score of 2/5**, proving the system's ability to quality-check itself.
-
-### Technologies Used
-*   **Model:** Google Gemini 2.5 Flash Lite / Pro
-*   **Frameworks:** Google Vertex AI, Google Generative AI SDK
-*   **Vector Search:** SentenceTransformers, Scikit-Learn
-*   **Observability:** Custom JSON TraceLogger
+## Getting Started
+1.  Clone the repository.
+2.  Install dependencies: `pip install -r requirements.txt`
+3.  Open `notebooks/agent_prototype.ipynb` to explore the agent's implementation.
